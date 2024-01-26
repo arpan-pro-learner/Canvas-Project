@@ -7,7 +7,7 @@ const Canvas = ({ heading, ctaContent, backgroundImage, canvasBgColor }) => {
     height: '750px',
     backgroundColor: canvasBgColor || '#0369A1',
     overflow: 'hidden',
-    // margin: '100px 20px',  // Adjusted margin for smaller screens
+  
   };
 
   const canvasStyle = {
@@ -31,7 +31,6 @@ const Canvas = ({ heading, ctaContent, backgroundImage, canvasBgColor }) => {
     fontSize: '24px',
     maxWidth: '70%',
     wordBreak: 'break-word',
- 
   };
 
   const ctaStyles = {
@@ -53,7 +52,7 @@ const Canvas = ({ heading, ctaContent, backgroundImage, canvasBgColor }) => {
   };
 
   return (
-    <div style={canvasContainerStyle} className="border rounded-md md:flex-row lg:m-auto lg:mt-28 lg:ml-16 lg:mb-10">
+    <div style={canvasContainerStyle} className="border rounded-md md:flex-row md:mt-28  lg:mt-28 lg:ml-16 lg:mb-10 ">
       {/* Canvas */}
       <div style={canvasStyle}>
         <div style={textStyles} className="text-white font-bold text-lg sm:m-auto">
@@ -65,12 +64,19 @@ const Canvas = ({ heading, ctaContent, backgroundImage, canvasBgColor }) => {
         >
           {ctaContent}
         </button>
-        <img
-          src={backgroundImage}
-          alt="User Uploaded Image"
-          style={imageStyles}
-          className="border-5 border-white"
-        />
+        {backgroundImage && (
+          <img
+            src={backgroundImage}
+            alt="User Uploaded Image"
+            style={imageStyles}
+            className="border-5 border-white"
+          />
+        )}
+        {!backgroundImage && (
+          <div style={imageStyles} className="bg-gray-200">
+           Please Upload An Image
+          </div>
+        )}
       </div>
     </div>
   );
@@ -79,14 +85,14 @@ const Canvas = ({ heading, ctaContent, backgroundImage, canvasBgColor }) => {
 Canvas.propTypes = {
   heading: PropTypes.string.isRequired,
   ctaContent: PropTypes.string.isRequired,
-  backgroundImage: PropTypes.string, 
-  canvasBgColor: PropTypes.string, 
+  backgroundImage: PropTypes.string,
+  canvasBgColor: PropTypes.string,
   onColorChange: PropTypes.func.isRequired,
 };
 
 Canvas.defaultProps = {
-  backgroundImage: '', 
-  canvasBgColor: '#0369A1', 
+  backgroundImage: '',
+  canvasBgColor: '#0369A1',
 };
 
 export default Canvas;
